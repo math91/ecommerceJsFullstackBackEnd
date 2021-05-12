@@ -65,10 +65,22 @@ const updateUser = async (request, response) => {
     }
 }
 
+const getUserWithQuery = async (request, response) => {
+    try {
+        const databaseResponse = await UserModel.find({ username: request.query.username })
+        databaseResponse.length !== 0
+        ? response.status(StatusCode.OK).send(databaseResponse)
+        : response.status(StatusCode.NOT_FOUND).send({ message: `Could not find user ${request.query.username}`})
+    } catch (error) {
+        response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
+    }
+}
+
 export default {
     createUser,
     getAllUsers,
     getUserById,
     deleteUserById,
-    updateUser
+    updateUser,
+    getUserWithQuery
 }

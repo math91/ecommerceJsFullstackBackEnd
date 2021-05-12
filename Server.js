@@ -4,9 +4,11 @@ import UserRoutes from './src/routes/User.Routes.js'
 import Configurations from './src/configurations/Configurations.js'
 import Middlewares from './src/middlewares/Middlewares.js'
 import helmet from 'helmet'
+import cors from 'cors'
 
 const application = express()
 application.use(express.json())
+application.use(cors({ credential: true }))
 application.use(morgan('common'))
 application.use(helmet())
 
