@@ -18,3 +18,5 @@ application.use(Middlewares.notFound)
 
 Configurations.connectToPort(application)
 Configurations.connectToDatabase()
+
+export default application
